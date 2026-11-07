@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dawit Obsa Kenea | Resume</title>
+    <style>
+      :root {
+        --bg-dark: #2f3b4b;
+        --bg-side: #2d3947;
+        --bg-side-2: #3a4658;
+        --text-dark: #1f2b36;
+        --text-soft: #4f5a66;
+        --text-light: #edf3f8;
+        --border: rgba(31, 43, 54, 0.2);
+        --muted: rgba(255,255,255,0.7);
+        --panel: #f0f2f4;
+        --panel-2: #f7f8f9;
+        --accent: #2f3b4b;
+        --line: #c7ccd2;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #4d5868;
+        color: var(--text-dark);
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .resume-page {
+        width: 100%;
+        max-width: 1100px;
+        min-height: 1400px;
+        background: #ebebeb;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+        display: grid;
+        grid-template-columns: 320px 1fr;
+      }
+
+      .sidebar {
+        background: linear-gradient(180deg, var(--bg-side) 0%, var(--bg-side-2) 100%);
+        color: var(--text-light);
+        padding: 32px 28px 26px;
+      }
+
+      .avatar-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+
+      .avatar {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        border: 4px solid #f3f4f6;
+        background: radial-gradient(circle at 35% 30%, #d7eaec 0%, #c1d9dd 18%, #2f495d 18%, #2d3947 60%, #1d2431 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .avatar::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(0,0,0,0.05));
+      }
+
+      .avatar::after {
+        content: "DO";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 52px;
+        font-weight: 700;
+        color: rgba(255,255,255,0.78);
+        letter-spacing: 2px;
+      }
+
+      .sidebar-section { margin-top: 24px; }
+
+      .sidebar-title {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #f3f4f6;
+        margin-bottom: 14px;
+      }
+
+      .contact-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-light);
+        font-size: 14px;
+        margin: 10px 0;
+      }
+
+      .contact-icon {
+        width: 18px;
+        text-align: center;
+        color: rgba(255,255,255,0.8);
+        font-size: 14px;
+      }
+
+      .contact-link {
+        color: var(--text-light);
+        text-decoration: none;
+      }
+
+      .side-divider {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.25);
+        margin: 18px 0 0;
+      }
+
+      .skills-list,
+      .language-list {
+        list-style: disc;
+        padding-left: 20px;
+        margin: 0;
+        color: #eef5fa;
+        line-height: 1.9;
+        font-size: 14px;
+      }
+
+      .reference-name {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+        color: white;
+      }
+
+      .reference-role {
+        margin-top: 8px;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.5;
+        font-size: 15px;
+      }
+
+      .reference-email {
+        margin-top: 14px;
+        color: rgba(255,255,255,0.8);
+        font-size: 14px;
+      }
+
+      .main {
+        background: #f3f3f3;
+        padding: 34px 40px 30px 42px;
+      }
+
+      .header-main {
+        margin-bottom: 18px;
+      }
+
+      .main-name {
+        margin: 0;
+        font-weight: 700;
+        font-size: clamp(2.2rem, 3vw, 3.2rem);
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+        text-transform: uppercase;
+        color: #1a2430;
+      }
+
+      .main-role {
+        margin-top: 10px;
+        font-size: 18px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2f3b4b;
+        font-weight: 700;
+      }
+
+      .content-section {
+        margin-top: 20px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 6px;
+        margin-bottom: 12px;
+      }
+
+      .section-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .section-icon::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .section-header h2 {
+        margin: 0;
+        font-size: 21px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #1d2530;
+      }
+
+      .paragraph {
+        margin: 0;
+        color: var(--text-soft);
+        line-height: 1.7;
+        font-size: 15px;
+      }
+
+      .job {
+        margin-top: 12px;
+      }
+
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+        margin-bottom: 8px;
+      }
+
+      .job-role {
+        font-size: 16px;
+        font-weight: 700;
+        color: #222c37;
+      }
+
+      .job-period {
+        font-size: 13px;
+        color: var(--text-soft);
+        font-weight: 700;
+      }
+
+      .job-company {
+        margin: 0 0 8px;
+        color: #2d3a47;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .job-list,
+      .project-list,
+      .hobby-list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--text-soft);
+        line-height: 1.8;
+        font-size: 15px;
+      }
+
+      .edu-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1d2530;
+      }
+
+      .edu-meta {
+        margin-top: 6px;
+        color: var(--text-soft);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .project-title {
+        font-size: 18px;
+        color: #1d2530;
+        font-weight: 700;
+      }
+
+      .project-date {
+        font-size: 13px;
+        color: var(--text-soft);
+        font-weight: 700;
+      }
+
+      .project-place {
+        color: #2d3a47;
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+
+      .print-actions {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+      }
+
+      .pdf-button {
+        background: #1d2530;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+      }
+
+      @media (max-width: 860px) {
+        body { padding: 12px; }
+        .resume-page { grid-template-columns: 1fr; }
+        .sidebar { padding: 20px 22px; }
+        .main { padding: 24px 22px; }
+        .print-actions { position: static; display: flex; justify-content: end; margin-bottom: 8px; }
+      }
+
+      @media print {
+        body {
+          background: white;
+          padding: 0;
+        }
+
+        .print-actions {
+          display: none !important;
+        }
+
+        .resume-page {
+          max-width: none;
+          width: 100%;
+          min-height: auto;
+          box-shadow: none;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="print-actions">
+      <button class="pdf-button" type="button" onclick="window.print()">Download PDF</button>
+    </div>
+
+    <div class="resume-page">
+      <aside class="sidebar">
+        <div class="avatar-wrap">
+          <div class="avatar" aria-label="Dawit profile photo placeholder"></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Contact</div>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <span class="contact-icon">☎</span>
+              <a class="contact-link" href="tel:+251910824429">0910824429</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-icon">✉</span>
+              <a class="contact-link" href="mailto:devaobsa@gmail.com">devaobsa@gmail.com</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-icon">⌂</span>
+              <span>Addis Ababa, Ethiopia</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Skills</div>
+          <ul class="skills-list">
+            <li>Programming Languages: Java, JavaScript, TypeScript, Python, SQL, HTML, CSS</li>
+            <li>Web Technologies: HTML5, CSS3, React, Next.js, Node.js, Express.js</li>
+            <li>Mobile Development: Android, Java, XML, Firebase, SQLite</li>
+            <li>Databases: MongoDB, MySQL, SQLite, PostgreSQL</li>
+            <li>Tools: Git, GitHub, REST APIs, Postman, VS Code, Android Studio</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Languages</div>
+          <ul class="language-list">
+            <li>Afan Oromo (Native)</li>
+            <li>Amharic (Fluent)</li>
+            <li>English (Fluent)</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Reference</div>
+          <p class="reference-name">Mihiretu Kebede (M.Sc.)</p>
+          <div class="reference-role">Lecturer, Head of Software Engineering Department</div>
+          <div class="reference-email">Email: mihiretu@bhu.edu.et</div>
+          <div class="reference-role">Bule Hora University</div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="header-main">
+          <h1 class="main-name">Dawit Obsa Kenea</h1>
+          <div class="main-role">Software Engineer</div>
+        </header>
+
+        <section class="content-section">
+          <div class="section-header">
+            <span class="section-icon" aria-hidden="true"></span>
+            <h2>Profile</h2>
+          </div>
+          <p class="paragraph">
+            Motivated Software Engineering graduate from Bule Hora University who successfully passed the National Exit Examination,
+            with practical experience in full-stack software development, database management, and web application development.
+            Skilled in problem-solving, teamwork, and building innovative technology solutions, with a strong passion for continuous
+            learning and professional growth.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <div class="section-header">
+            <span class="section-icon" aria-hidden="true"></span>
+            <h2>Experience</h2>
+          </div>
+
+          <div class="job">
+            <div class="job-header">
+              <div class="job-role">Software Engineering Intern</div>
+              <div class="job-period">Jun 2025 - Oct 2025</div>
+            </div>
+            <div class="job-company">Ministry of Innovation and Technology (MiNT), Ethiopia</div>
+            <ul class="job-list">
+              <li>Developed a Recruitment and Employee Self-Service System (RESS) using Next.js, Node.js, and MongoDB.</li>
+              <li>Designed and implemented RESTful APIs for recruitment and employee management functionalities.</li>
+              <li>Collaborated on system design, testing, and deployment throughout the software development lifecycle.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-header">
+            <span class="section-icon" aria-hidden="true"></span>
+            <h2>Education</h2>
+          </div>
+
+          <div class="edu-title">Bachelor of science in Software engineering</div>
+          <div class="edu-meta">College of Computing And Informatics<br />Bule Hora University</div>
+          <div class="edu-meta" style="margin-top: 8px;">CGPA: 3.62/4<br />Exit Exam result: 67.5%</div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-header">
+            <span class="section-icon" aria-hidden="true"></span>
+            <h2>Projects</h2>
+          </div>
+
+          <div class="project-header">
+            <div class="project-title">Final Year Project</div>
+            <div class="project-date">Feb. 2026 - May 2026</div>
+          </div>
+          <div class="project-place">Bule Hora University, Bule Hora, Ethiopia</div>
+          <ul class="project-list">
+            <li>Developed a BHU Link using Next.js, Node.js, and MongoDB.</li>
+            <li>Designed and implemented RESTful APIs for social media and learning management functionalities.</li>
+            <li>Collaborated on system design, testing, and deployment throughout the software development lifecycle.</li>
+          </ul>
+        </section>
+
+        <section class="content-section">
+          <div class="section-header">
+            <span class="section-icon" aria-hidden="true"></span>
+            <h2>Hobbies and Interests</h2>
+          </div>
+
+          <ul class="hobby-list">
+            <li>Software Development and Coding</li>
+            <li>Learning New Technologies</li>
+            <li>Problem Solving and Competitive Programming</li>
+            <li>Reading Technology Articles and Research Papers</li>
+            <li>Contributing to Open-Source Projects</li>
+            <li>Team Collaboration and Knowledge Sharing</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

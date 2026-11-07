@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,9 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { budgetRanges, inquirySchema, projectTypes, timelines } from "@/lib/inquiry-schema";
 
 const selectClass =
-  "flex h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring";
-const fieldClass = "h-11 bg-background";
-const ADMIN_EMAIL = "devaoobsa@gmail.com";
+  "flex h-11 w-full rounded-xl border border-white/10 bg-[#0b1220]/90 px-3 text-sm text-foreground shadow-inner shadow-black/20 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f7d98c]/60";
+const fieldClass =
+  "h-11 rounded-xl border border-white/10 bg-[#0b1220]/90 text-foreground shadow-inner shadow-black/20 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f7d98c]/60";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 type Errors = Partial<Record<string, string>>;
 
@@ -46,29 +48,26 @@ export function ContactForm() {
     setStatus("sending");
 
     try {
-      const subject = encodeURIComponent(`Project Inquiry - ${raw.projectType}`);
-      const body = encodeURIComponent(
-        [
-          `Name: ${raw.name}`,
-          `Email: ${raw.email}`,
-          raw.projectType ? `Project Type: ${raw.projectType}` : "",
-          raw.budgetRange ? `Budget Range: ${raw.budgetRange}` : "",
-          raw.timeline ? `Timeline: ${raw.timeline}` : "",
-          raw.requiredFeatures ? `Required Features: ${raw.requiredFeatures}` : "",
-          "",
-          "Project Description:",
-          raw.description,
-        ]
-          .filter(Boolean)
-          .join("\n"),
-      );
+      const response = await fetch(`${API_BASE}/api/inquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
 
-      window.location.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
+      const responseBody = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(responseBody.message || "Unable to send inquiry right now.");
+      }
+
       setStatus("sent");
       form.reset();
+      toast.success("Inquiry sent successfully — I’ll reply soon.");
     } catch (err) {
-      setServerError(err instanceof Error ? err.message : "Something went wrong.");
+      const message = err instanceof Error ? err.message : "Something went wrong.";
+      setServerError(message);
       setStatus("error");
+      toast.error(message);
     }
   }
 
@@ -95,15 +94,33 @@ export function ContactForm() {
     ) : null;
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-2xl border border-border bg-card p-6 sm:p-8">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="space-y-6 rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(13,18,29,0.96),rgba(10,16,26,0.9))] p-6 shadow-[0_30px_90px_rgba(2,6,23,0.38)] sm:p-8"
+    >
+      <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
+        <div>
+          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#f7d98c]">Project inquiry</p>
+          <h3 className="mt-2 text-2xl font-semibold text-foreground">Tell me about your project</h3>
+        </div>
+        <span className="rounded-full border border-[#f7d98c]/30 bg-[#f7d98c]/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#f7d98c]">
+          Usually replies within 24h
+        </span>
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name" className="text-sm font-medium text-foreground/90">
+            Name
+          </Label>
           <Input id="name" name="name" autoComplete="name" className={fieldClass} />
           {err("name")}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email" className="text-sm font-medium text-foreground/90">
+            Email
+          </Label>
           <Input id="email" name="email" type="email" autoComplete="email" className={fieldClass} />
           {err("email")}
         </div>
@@ -111,7 +128,9 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-3">
         <div className="space-y-2">
-          <Label htmlFor="projectType">Project Type</Label>
+          <Label htmlFor="projectType" className="text-sm font-medium text-foreground/90">
+            Project Type
+          </Label>
           <select id="projectType" name="projectType" defaultValue="" className={selectClass}>
             <option value="" disabled>
               Select a type
@@ -123,7 +142,9 @@ export function ContactForm() {
           {err("projectType")}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="budgetRange">Budget Range (optional)</Label>
+          <Label htmlFor="budgetRange" className="text-sm font-medium text-foreground/90">
+            Budget Range (optional)
+          </Label>
           <select id="budgetRange" name="budgetRange" defaultValue="" className={selectClass}>
             <option value="">Not sure yet</option>
             {budgetRanges.map((b) => (
@@ -132,7 +153,9 @@ export function ContactForm() {
           </select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="timeline">Timeline (optional)</Label>
+          <Label htmlFor="timeline" className="text-sm font-medium text-foreground/90">
+            Timeline (optional)
+          </Label>
           <select id="timeline" name="timeline" defaultValue="" className={selectClass}>
             <option value="">Not sure yet</option>
             {timelines.map((t) => (
@@ -143,24 +166,28 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="requiredFeatures">Required Features (optional)</Label>
+        <Label htmlFor="requiredFeatures" className="text-sm font-medium text-foreground/90">
+          Required Features (optional)
+        </Label>
         <Textarea
           id="requiredFeatures"
           name="requiredFeatures"
           rows={3}
           placeholder="e.g. user login, admin dashboard, payments, reports…"
-          className="bg-background"
+          className="rounded-xl border border-white/10 bg-[#0b1220]/90 text-foreground shadow-inner shadow-black/20 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f7d98c]/60"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Project Description</Label>
+        <Label htmlFor="description" className="text-sm font-medium text-foreground/90">
+          Project Description
+        </Label>
         <Textarea
           id="description"
           name="description"
           rows={5}
           placeholder="What are you trying to build, and who will use it?"
-          className="bg-background"
+          className="rounded-xl border border-white/10 bg-[#0b1220]/90 text-foreground shadow-inner shadow-black/20 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f7d98c]/60"
         />
         {err("description")}
       </div>

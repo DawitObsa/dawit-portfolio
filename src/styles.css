@@ -167,11 +167,18 @@ body::before {
   align-items: center;
   border-radius: 9999px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-secondary);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-secondary-foreground);
+  transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.tag:hover {
+  border-color: color-mix(in oklab, var(--primary) 35%, var(--border));
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(8, 15, 32, 0.25);
 }
 
 @utility hero-glow {
@@ -188,4 +195,75 @@ body::before {
     linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@utility glass-panel {
+  background: rgba(10, 18, 30, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.28);
+}
+
+@utility premium-surface {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 42px rgba(2, 6, 23, 0.22);
+}
+
+@utility hero-technology-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(12, 19, 30, 0.7);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.hero-technology-pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(247, 217, 140, 0.35);
+  box-shadow: 0 10px 28px rgba(19, 29, 46, 0.35);
+}
+
+@utility stat-card {
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.card,
+.rounded-2xl,
+.rounded-xl,
+article,
+figure {
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+}
+
+article,
+.rounded-2xl,
+.rounded-xl,
+.card,
+figure {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+article:hover,
+.rounded-2xl:hover,
+.rounded-xl:hover,
+.card:hover,
+figure:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(2, 6, 23, 0.18);
+}
+
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }

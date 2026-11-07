@@ -51,6 +51,20 @@ export const Route = createFileRoute("/")({
 
 const heroStack = ["React", "Next.js", "Node.js", "Java", "Android", "MongoDB", "SQLite"];
 
+const heroHighlights = ["Founders", "Startups", "Businesses", "Teams"];
+
+const heroSignals = [
+  { label: "MVP delivery", value: "2–6 weeks" },
+  { label: "Web + mobile", value: "Full stack" },
+  { label: "Business focus", value: "Product-first" },
+];
+
+const heroProof = [
+  { value: "6+", label: "digital products built" },
+  { value: "100%", label: "business-first approach" },
+  { value: "24/7", label: "execution mindset" },
+];
+
 const strip = [
   { icon: Braces, title: "Software Engineering", text: "Software Engineering background" },
   { icon: Layers, title: "Full-Stack Development", text: "Frontend + Backend + Database" },
@@ -90,11 +104,81 @@ const processSteps = [
   { title: "Deliver", text: "I provide the completed solution and explain the important parts of the project." },
 ];
 
+const packages = [
+  {
+    name: "Starter Launch",
+    price: "From $500",
+    description: "For small business websites, landing pages, and simple product pages that need a professional online presence.",
+    features: ["Landing page or small site", "Responsive design", "Basic content structure", "Launch support"],
+    cta: "Request a Starter Site",
+  },
+  {
+    name: "Business Product",
+    price: "From $1,200",
+    description: "For business tools, dashboards, portals, and custom web products that need both design and functionality.",
+    features: ["Custom web app", "Database and API setup", "User flows and dashboards", "Testing and deployment"],
+    cta: "Request a Product Build",
+  },
+  {
+    name: "Full Product Build",
+    price: "Custom quote",
+    description: "For startups and teams that need a scalable product with multiple services, flows, and real-world business logic.",
+    features: ["Web + mobile capable", "Advanced architecture", "Custom workflows", "Long-term product support"],
+    cta: "Book a Discovery Call",
+  },
+];
+
 const reasons = [
   { icon: MessageSquare, title: "Clear Communication", text: "I focus on understanding requirements and keeping project communication straightforward." },
   { icon: Target, title: "Practical Solutions", text: "I build around the actual problem instead of adding unnecessary complexity." },
   { icon: Cpu, title: "Modern Technologies", text: "I use technologies that are appropriate for the project's requirements." },
   { icon: RefreshCw, title: "Continuous Improvement", text: "I test, debug, learn, and improve throughout development." },
+];
+
+const metrics = [
+  { value: "6+", label: "full-stack products and platforms built" },
+  { value: "3", label: "core disciplines: web, mobile, and APIs" },
+  { value: "100%", label: "focus on practical, user-first delivery" },
+];
+
+const audiences = [
+  {
+    title: "Startups & founders",
+    text: "Turn an idea into a real product with a clean MVP, polished UX, and a system your users can trust.",
+  },
+  {
+    title: "Small businesses",
+    text: "Improve operations with a website, dashboard, booking flow, internal tool, or customer-facing product.",
+  },
+  {
+    title: "Teams & organizations",
+    text: "Build internal systems, workflows, and digital tools that make work faster, clearer, and easier to manage.",
+  },
+  {
+    title: "Growing digital brands",
+    text: "Strengthen your online presence with a better product experience that supports trust, conversion, and growth.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Dawit was clear, reliable, and able to turn a rough idea into a working product with a polished user experience.",
+    name: "Startup Founder",
+    title: "Product Client",
+  },
+  {
+    quote:
+      "The process felt straightforward from planning to delivery, and the final product matched the workflow we needed.",
+    name: "Project Lead",
+    title: "Business Client",
+  },
+  {
+    quote:
+      "He brings a strong mix of technical thinking and practical delivery, which made the build feel efficient and trustworthy.",
+    name: "Team Member",
+    title: "Collaboration Partner",
+  },
 ];
 
 const experience = [
@@ -147,23 +231,31 @@ function Index() {
               </span>
               Available for product & web work
             </span>
-            <p className="eyebrow mt-6 text-[0.68rem] sm:text-xs">Software Engineer • Full-Stack Developer • Product Mindset</p>
+            <p className="eyebrow mt-6 text-[0.68rem] sm:text-xs">Software Engineer • Full-Stack Developer • Product Builder</p>
             <h1 className="mt-4 max-w-xl text-4xl font-bold leading-[1.02] sm:text-5xl lg:text-7xl">
-              I craft <span className="bg-gradient-to-r from-[#f7d98c] via-[#dfeffd] to-[#7ec8ff] bg-clip-text text-transparent">premium digital products</span> that help brands grow.
+              I build <span className="bg-gradient-to-r from-[#f7d98c] via-[#dfeffd] to-[#7ec8ff] bg-clip-text text-transparent">digital products</span> that help businesses sell, operate, and grow.
             </h1>
             <p className="mt-6 max-w-xl text-base text-foreground/90 sm:text-lg">
-              I design and build polished web experiences, business systems, mobile apps, and API-driven platforms for founders, teams, and organizations that want dependable software and a stronger digital presence.
+              I help founders, startups, and growing businesses turn ideas into polished websites, mobile apps, dashboards, APIs, and custom software that feels premium and works reliably in the real world.
             </p>
             <p className="mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-              From first idea to final delivery, I focus on clean design, solid engineering, and products that feel credible, scalable, and ready for real-world use.
+              From strategy and design to development and launch, I focus on solutions that are easy to use, easy to trust, and built to support your next stage of growth.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button asChild variant="hero" size="lg">
                 <a href="#contact">
-                  Book a Discovery Call <ArrowRight />
+                  Get a Project Quote <ArrowRight />
                 </a>
               </Button>
               <Button asChild variant="ghostLine" size="lg">
+                <a href="/resume.html" target="_blank" rel="noreferrer">
+                  Download PDF Resume
+                </a>
+              </Button>
+              <Button asChild variant="ghost" size="lg">
+                <a href="/profile">View Profile</a>
+              </Button>
+              <Button asChild variant="ghost" size="lg">
                 <a href="#projects">View Case Studies</a>
               </Button>
               <Button asChild variant="ghost" size="lg">
@@ -183,11 +275,45 @@ function Index() {
                 <span className="size-2 rounded-full bg-[#f7d98c]" /> +251910824429
               </a>
             </div>
-            <div className="mt-8 flex flex-wrap gap-4 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              <span className="rounded-full border border-border bg-card/80 px-3 py-2">Web</span>
-              <span className="rounded-full border border-border bg-card/80 px-3 py-2">Mobile</span>
-              <span className="rounded-full border border-border bg-card/80 px-3 py-2">APIs</span>
-              <span className="rounded-full border border-border bg-card/80 px-3 py-2">Systems</span>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] p-4 shadow-[0_20px_60px_rgba(15,23,42,0.25)] backdrop-blur-sm">
+              <div className="mb-3 flex items-center justify-between gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                <span>Built for</span>
+                <span className="text-primary">premium digital products</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {heroStack.map((item) => (
+                  <span key={item} className="hero-technology-pill">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {heroHighlights.map((item) => (
+                <span key={item} className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-primary">
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {heroProof.map((signal) => (
+                <div key={signal.label} className="premium-surface rounded-2xl border border-white/10 px-4 py-3 text-left">
+                  <p className="text-xl font-bold text-foreground">{signal.value}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{signal.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {heroSignals.map((signal) => (
+                <div key={signal.label} className="glass-panel rounded-full border border-white/10 px-3 py-2 text-left">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{signal.label}</p>
+                  <p className="mt-1 text-xs font-semibold text-foreground">{signal.value}</p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -215,10 +341,10 @@ function Index() {
               </div>
             </div>
 
-            <div className="pointer-events-none absolute -left-2 top-10 hidden rounded-full border border-border bg-card/80 px-3 py-2 text-[10px] font-medium text-muted-foreground shadow-[0_12px_30px_rgba(2,6,23,0.4)] backdrop-blur-sm sm:block">
+            <div className="stat-card pointer-events-none absolute -left-2 top-10 hidden rounded-full border border-border bg-card/80 px-3 py-2 text-[10px] font-medium text-muted-foreground shadow-[0_12px_30px_rgba(2,6,23,0.4)] backdrop-blur-sm sm:block">
               React • Node • Java
             </div>
-            <div className="pointer-events-none absolute -right-2 bottom-16 hidden rounded-full border border-border bg-card/80 px-3 py-2 text-[10px] font-medium text-muted-foreground shadow-[0_12px_30px_rgba(2,6,23,0.4)] backdrop-blur-sm sm:block">
+            <div className="stat-card pointer-events-none absolute -right-2 bottom-16 hidden rounded-full border border-border bg-card/80 px-3 py-2 text-[10px] font-medium text-muted-foreground shadow-[0_12px_30px_rgba(2,6,23,0.4)] backdrop-blur-sm sm:block">
               Web • Mobile • APIs
             </div>
           </div>
@@ -278,6 +404,24 @@ function Index() {
         </div>
       </section>
 
+      {/* WHY CHOOSE ME */}
+      <section id="why-choose-me" className="mx-auto max-w-6xl px-5 py-24">
+        <SectionHeading
+          eyebrow="Why choose me"
+          title="Clear thinking, practical delivery, and product focus."
+          text="I build software that is useful, credible, and ready for real business use — not just code that looks good in demos."
+        />
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {strengths.map((item, index) => (
+            <div key={item.title} className="rounded-2xl border border-border bg-card p-6">
+              <p className="font-mono text-xs text-primary">0{index + 1}</p>
+              <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* EXPERIENCE */}
       <section id="experience" className="mx-auto max-w-6xl px-5 py-24">
         <SectionHeading
@@ -309,6 +453,54 @@ function Index() {
               </ul>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* RESULTS */}
+      <section id="results" className="border-y border-border bg-surface-alt">
+        <div className="mx-auto max-w-6xl px-5 py-24">
+          <SectionHeading
+            eyebrow="Results"
+            title="Professional delivery built around real business needs."
+            text="I focus on product clarity, practical engineering, and digital experiences that are reliable enough for real users and real operations."
+          />
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {metrics.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-border bg-card p-6 text-center">
+                <p className="text-4xl font-bold text-primary">{item.value}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{item.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {audiences.map((audience) => (
+              <div key={audience.title} className="rounded-2xl border border-border bg-card p-5">
+                <p className="font-semibold text-foreground">{audience.title}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{audience.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            {testimonials.map((item) => (
+              <figure key={item.name} className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+                <div className="mb-4 flex gap-1 text-[#f7d98c]">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={`${item.name}-${index}`} aria-label="star rating">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <blockquote className="text-base leading-7 text-foreground/90">“{item.quote}”</blockquote>
+                <figcaption className="mt-auto pt-6">
+                  <p className="font-semibold">{item.name}</p>
+                  <p className="text-sm text-muted-foreground">{item.title}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -380,6 +572,18 @@ function Index() {
                 <p className="font-mono text-sm text-primary">{String(i + 1).padStart(2, "0")}</p>
                 <h3 className="mt-2 text-2xl font-bold">{p.title}</h3>
                 <p className="mt-3 text-muted-foreground">{p.summary}</p>
+                <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                  {[
+                    { value: `${p.stack.length}+`, label: "core tools" },
+                    { value: `${p.features.length}`, label: "core features" },
+                    { value: p.category.includes("Android") ? "Mobile" : "Full-stack", label: "delivery type" },
+                  ].map((metric) => (
+                    <div key={metric.label} className="rounded-xl border border-border bg-background/70 p-3 text-left">
+                      <p className="text-xl font-bold text-primary">{metric.value}</p>
+                      <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{metric.label}</p>
+                    </div>
+                  ))}
+                </div>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {p.stack.map((t) => (
                     <span key={t} className="tag">
@@ -510,6 +714,38 @@ function Index() {
         </div>
       </section>
 
+      {/* PACKAGES */}
+      <section id="packages" className="mx-auto max-w-6xl px-5 py-24">
+        <SectionHeading
+          eyebrow="Packages"
+          title="Simple ways to get started."
+          text="Clear options for businesses and founders who need quality digital products without unnecessary complexity."
+        />
+        <div className="grid gap-6 lg:grid-cols-3">
+          {packages.map((pkg) => (
+            <article
+              key={pkg.name}
+              className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:border-primary/40"
+            >
+              <p className="font-mono text-xs text-primary">{pkg.name}</p>
+              <h3 className="mt-4 text-3xl font-bold">{pkg.price}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{pkg.description}</p>
+              <ul className="mt-5 space-y-3 text-sm text-foreground/90">
+                {pkg.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button asChild variant="hero" className="mt-6 w-full">
+                <a href="#contact">{pkg.cta}</a>
+              </Button>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* PROCESS */}
       <section id="process" className="border-y border-border bg-surface-alt">
         <div className="mx-auto max-w-6xl px-5 py-24">
@@ -541,6 +777,56 @@ function Index() {
         </div>
       </section>
 
+      {/* RESUME */}
+      <section id="resume" className="border-y border-border bg-surface-alt">
+        <div className="mx-auto max-w-6xl px-5 py-24">
+          <SectionHeading
+            eyebrow="Resume"
+            title="A clear snapshot of my engineering background."
+            text="I work across product design, application architecture, backend systems, and mobile experiences — with a focus on practical delivery and clean implementation."
+          />
+
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+              <h3 className="text-2xl font-semibold">Dawit Obsa</h3>
+              <p className="mt-2 text-muted-foreground">Full-Stack Developer • Software Engineer • Product Builder</p>
+              <div className="mt-6 space-y-4 text-sm text-foreground/90">
+                <div>
+                  <p className="font-semibold text-primary">Core strengths</p>
+                  <p className="mt-1">Web platforms, Android apps, REST APIs, business dashboards, database systems, and custom software built around real user needs.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-primary">Stack</p>
+                  <p className="mt-1">React, Next.js, TypeScript, Node.js, Java, Android Studio, MongoDB, MySQL, SQLite, REST APIs</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-primary">Focus</p>
+                  <p className="mt-1">Product clarity, clean engineering, scalable architecture, practical UX, and reliable delivery.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+              <p className="eyebrow">Available for freelance work</p>
+              <h3 className="mt-3 text-2xl font-semibold">Need a developer for your next build?</h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                I can help with product planning, design direction, implementation, testing, and delivery for websites, apps, and systems.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild variant="hero">
+                  <a href="/resume.html" target="_blank" rel="noreferrer">
+                    Open Resume PDF
+                  </a>
+                </Button>
+                <Button asChild variant="ghostLine">
+                  <a href="mailto:devaobsa@gmail.com">Email Me</a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section id="contact" className="mx-auto max-w-6xl px-5 py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
@@ -548,10 +834,10 @@ function Index() {
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs">
               <span className="size-2 rounded-full bg-primary" /> Available for freelance work
             </span>
-            <h2 className="mt-5 text-3xl font-bold sm:text-4xl">Looking for a Developer?</h2>
+            <h2 className="mt-5 text-3xl font-bold sm:text-4xl">Need a developer who understands both product and execution?</h2>
             <p className="mt-4 text-muted-foreground">
-              Whether you need a website, web application, Android app, REST API, database system, or custom
-              software solution, I can help turn your requirements into a working product.
+              Whether you need a website, web application, Android app, REST API, dashboard, or custom business software,
+              I help founders and teams turn ideas into useful products that look professional and work reliably.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="ghostLine" size="lg">
@@ -596,14 +882,14 @@ function Index() {
         <div className="hero-glow pointer-events-none absolute inset-0" />
         <div className="relative mx-auto max-w-3xl px-5 py-24 text-center">
           <p className="eyebrow">Start a conversation</p>
-          <h2 className="mt-4 text-4xl font-bold sm:text-5xl">Have an idea? Let's build it.</h2>
+          <h2 className="mt-4 text-4xl font-bold sm:text-5xl">Need a product that looks premium and works for real users?</h2>
           <p className="mt-4 text-muted-foreground">
-            Tell me what you're trying to build, and let's turn your idea into a practical digital product.
+            Tell me what you're building, and I’ll help shape it into a polished product with the right technology, workflow, and user experience.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild variant="hero" size="lg">
               <a href="#contact">
-                Start a Project <ArrowRight />
+                Book a Strategy Call <ArrowRight />
               </a>
             </Button>
             <Button asChild variant="ghostLine" size="lg">

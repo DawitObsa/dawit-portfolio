@@ -14,8 +14,8 @@ export const env = {
   supabaseUrl: process.env.SUPABASE_URL ?? "",
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
   resendApiKey: process.env.RESEND_API_KEY ?? "",
-  emailFrom: process.env.EMAIL_FROM ?? "noreply@resend.dev",
-  adminEmail: process.env.ADMIN_EMAIL ?? "devaoobsa@gmail.com",
+  emailFrom: process.env.EMAIL_FROM ?? "onboarding@resend.dev",
+  adminEmail: process.env.ADMIN_EMAIL ?? "devaobsa@gmail.com",
 };
 
 export function requireBackendEnv() {

@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { env, requireBackendEnv } from "../config/env.js";
+import { env } from "../config/env.js";
 import { inquiryModel } from "../db/inquiry.model.js";
 import { sendInquiryEmail } from "./emailService.js";
 
@@ -16,24 +16,34 @@ export function mapInquiryPayload(raw) {
 }
 
 export async function createInquiry(rawInquiry) {
-  requireBackendEnv();
+  const hasSupabaseConfig = Boolean(env.supabaseUrl && env.supabaseServiceRoleKey);
 
-  const supabase = createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
+  if (hasSupabaseConfig) {
+    const supabase = createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
 
-  const payload = mapInquiryPayload(rawInquiry);
+    const payload = mapInquiryPayload(rawInquiry);
 
-  const { error } = await supabase.from(inquiryModel.tableName).insert(payload);
+    const { error } = await supabase.from(inquiryModel.tableName).insert(payload);
 
-  if (error) {
-    throw new Error(error.message || "Could not save inquiry");
+    if (error) {
+      throw new Error(error.message || "Could not save inquiry");
+    }
   }
 
-  await sendInquiryEmail(rawInquiry);
+  const emailResult = await sendInquiryEmail(rawInquiry);
 
-  return { ok: true };
+  if (!emailResult.ok && !emailResult.skipped) {
+    throw new Error("Could not send inquiry email");
+  }
+
+  if (emailResult.skipped) {
+    throw new Error("Email delivery is not configured. Add RESEND_API_KEY, EMAIL_FROM, and ADMIN_EMAIL.");
+  }
+
+  return { ok: true, stored: hasSupabaseConfig, emailed: true };
 }
